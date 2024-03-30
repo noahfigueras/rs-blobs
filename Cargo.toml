@@ -1,0 +1,23 @@
+[package]
+name = "rs-blobs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+alloy = { git = "https://github.com/alloy-rs/alloy.git", rev = "68952c0", features = [
+  "signers",
+  "network",
+  "providers",
+  "rpc",
+  "rpc-client",
+  "consensus",
+  "signer-wallet",
+  "sol-types",
+  "eips",
+] }
+c-kzg = "1.0.0"
+eyre = "0.6.12"
+tokio = { features = ["full"] }
+
