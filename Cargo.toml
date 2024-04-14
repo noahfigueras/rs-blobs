@@ -4,20 +4,34 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+debug = true
 
 [dependencies]
-alloy = { git = "https://github.com/alloy-rs/alloy.git", rev = "68952c0", features = [
+eyre = "0.6.12"
+tokio = { features = ["full"] }
+alloy = { git = "https://github.com/noahfigueras/alloy.git", branch="eip4844-transaction-missing-sidecar", features = [
   "signers",
   "network",
   "providers",
+  "provider-http",
   "rpc",
   "rpc-client",
+  "rpc-types-eth",
   "consensus",
   "signer-wallet",
   "sol-types",
   "eips",
+  "node-bindings",
+  "reqwest",
+  "transport-http",
+  "rlp"
 ] }
-c-kzg = "1.0.0"
-eyre = "0.6.12"
-tokio = { features = ["full"] }
 
+alloy-consensus = { git = "https://github.com/noahfigueras/alloy", branch="eip4844-transaction-missing-sidecar"}
+c-kzg = { features = ["std", "serde"] }
+
+[features]
+default = [
+  "alloy-consensus/kzg",
+]
